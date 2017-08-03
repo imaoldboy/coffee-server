@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import path from 'path'
 import bodyParser from 'body-parser'
 
+const CoffeeMachine = require('./models/coffeeMachine')
 const app = express()
 
 app.use(morgan('dev'))
@@ -15,6 +16,12 @@ app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.get('/', (request, response) => {
+//use normal way
+    CoffeeMachine.find()
+        .then(documents => console.log(documents))
+//use other way
+//var MongoDB = require('./config/mongodb');
+//MongoDB.find('coffeemachines', {}, {}, function (err, res) { console.log(res); });
     response.render('index')
 })
 app.get('/comments/new', (request, response) => {
