@@ -24,7 +24,17 @@ const show = (request, response) => {
 const update = (request, response) => {
     const id = request.params.id
     const body = {
-        remarks: request.body.remarks
+        status: request.body.status,
+        cups: request.body.cups,
+        description: request.body.description,
+        location: request.body.location, 
+        customerID: request.body.customerID,
+        ipAddress:  request.body.ipAddress,
+        maintainerID:  request.body.maintainerID,
+        updateUrl:  request.body.updateUrl,
+        qrCode:  request.body.qrCode,
+        remarks:  request.body.remarks,
+        serialNo:  request.body.serialNo
     }
     Machine.findByIdAndUpdate(id, { $set: body}, { new: true})
         .then(document => response.send(document))
