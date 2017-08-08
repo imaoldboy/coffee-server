@@ -17,8 +17,10 @@ const store = (request, response) => {
 
 const show = (request, response) => {
     const id = request.params.id
-    Machine.findById(id)
-        .then(document => response.send(document))
+    Machine.find({serialNo: id})
+       .then(document => response.send(document))
+//    Machine.findById(id)
+//       .then(document => response.send(document))
 }
 
 const update = (request, response) => {
