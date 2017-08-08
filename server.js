@@ -30,6 +30,9 @@ app.post('/', urlencodedParser, function (req, res) {
         }else if(req.body.setPay && paid==false) { //支付成功后请求
                 paid = true;
                 console.log("will set paid=true");
+                console.log("req.body is: " + req.body);
+                console.log("setPay is: " + req.body.setPay);
+                
         } else {  // 输出表单
                 res.write("0");
                 console.log("will set 0");
