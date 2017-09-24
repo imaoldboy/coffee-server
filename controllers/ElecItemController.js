@@ -1,7 +1,7 @@
 const ElecItem = require('../models/elecItem')
 
 const index = (request, response) => {
-    ElecItem.find()
+    ElecItem.find().sort({"recordTime":-1}).limit(20)
         .then(documents => response.send(documents))
 }
 
@@ -24,7 +24,7 @@ const store = (request, response) => {
 
 const show = (request, response) => {
     const id = request.params.id
-    ElecItem.find({serialNo: id})
+    ElecItem.find({serialNo: id}).sort({"recordTime":-1}).limit(20)
        .then(document => response.send(document))
 }
 
