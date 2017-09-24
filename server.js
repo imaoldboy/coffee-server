@@ -21,7 +21,7 @@ app.post('/', urlencodedParser, function (req, res) {
         if(req.body.product_id && req.body.setPay == 'true') { //支付成功后请求
             CoffeeMachine.find({serialNo: req.body.product_id})
                 .then(documents => payCallBack(documents))
-        
+                .catch(error => console.log(error))
         
         }else{//python single machine support.
                  //输出 JSON 格式
@@ -63,6 +63,7 @@ function payCallBack(documents){
     const id = documents[0]['_id'];
     const body = {
         status: '1',
+        cups: cups,
     }
     CoffeeMachine.findByIdAndUpdate(id, { $set: body}, { new: true})
         .then(document => console.log(document))
